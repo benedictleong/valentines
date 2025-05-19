@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/jpeg" href="icon2.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yayy!</title>
+    <title>Ben's Valentine Proposal :3</title>
     <style>
         body {
             display: flex;
@@ -12,7 +13,7 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #ffebee;
+            background-color: #FCFCFC;
             font-family: Arial, sans-serif;
             overflow: hidden;
         }
@@ -25,8 +26,7 @@
         h1 {
             color: #e91e63;
             margin-bottom: 20px;
-            font-size: 48px;
-            animation: bounce 1s infinite;
+            font-size: 2em;
         }
 
         .gif-container {
@@ -37,64 +37,134 @@
             max-width: 300px;
             width: 100%;
             border-radius: 10px;
-            /*box-shadow: 0 0 10px rgba(0,0,0,0.2);*/
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;  /* Add this to center buttons vertically */
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            min-width: 80px;
+        }
+
+        #yesBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #f44336;
+            color: white;
+            height: 41px;
+            line-height: 21px;
+            white-space: nowrap;
+            transition: width 0.3s ease;
+            padding: 10px 20px;
+            overflow: hidden;
+            align-self: center;  /* Add this to maintain center alignment */
+        }
+
+        #yesBtn:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+
+        #noBtn:hover {
+            background-color: #da190b;
         }
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 36px;
+                font-size: 1.5em;
             }
             
             .gif-container img {
                 max-width: 250px;
             }
         }
-
-        .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;  /* Changed from right to left */
-            padding: 10px 15px 10px 12px;  /* Adjusted padding for text */
-            border: none;
-            border-radius: 20px;  /* Changed to pill shape for text */
-            cursor: pointer;
-            font-size: 16px;
-            background-color: transparent;
-            color: #e91e63;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 4px;  /* Space between arrow and text */
-        }
-
-        .back-button:hover {
-            transform: scale(1.1);
-            background-color: rgba(233, 30, 99, 0.1);
-        }
-
-        .back-button::before {
-            content: "←";
-            font-size: 20px;
-        }
     </style>
 </head>
 <body>
-    <button class="back-button" onclick="goBack()" title="Go back">Back</button>
     <div class="container">
-        <h1>Yayy! 🎉💖</h1>
+        <h1>Will you be my Valentine? 💖</h1>
         <div class="gif-container">
-            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3hoM3JybzY4eHptaWhsYmRyczMxajdraTdyeTNmbW90b3o1dXV1aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/fvN5KrNcKKUyX7hNIA/giphy.gif" alt="Celebration GIF">
+            <img src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" alt="Cute Valentine GIF">
+        </div>
+        <div class="buttons">
+            <button id="yesBtn" onclick="redirectToSuccess()">Yes</button>
+            <button id="noBtn" onclick="makeYesBigger()">No</button>
         </div>
     </div>
 
     <script>
-        function goBack() {
-            window.location.href = 'index.html';
+        let yesBtnSize = 16;
+        let currentPhraseIndex = 0;
+        let backgroundChanged = false;
+        
+        const phrases = [ 
+            "No", 
+            "Are you sure?", 
+            "Really sure?", 
+            "Last chance!", 
+            "Surely not?", 
+            "Pookie please~~", 
+            "You might regret this!", 
+            "Give it another thought!", 
+            "Are you absolutely certain?", 
+            "This could be a mistake!", 
+            "Have a heart!", 
+            "Don't be so cold!", 
+            "Change of heart?", 
+            "Wouldn't you reconsider?", 
+            "Is that your final answer?", 
+            "Don't do this to me", 
+            "I'm gonna cry...", 
+            "You're breaking my heart ;("
+        ];
+        
+        function makeYesBigger() {
+            // Update Yes button
+            yesBtnSize += 10;
+            const yesBtn = document.getElementById('yesBtn');
+            yesBtn.style.fontSize = yesBtnSize + 'px';
+            yesBtn.style.padding = (yesBtnSize/2) + 'px ' + yesBtnSize + 'px';
+            
+            // Update No button text only
+            const noBtn = document.getElementById('noBtn');
+            currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+            noBtn.textContent = phrases[currentPhraseIndex];
+            
+            // Adjust width smoothly while maintaining fixed height
+            const computedStyle = window.getComputedStyle(noBtn);
+            const paddingLeft = parseInt(computedStyle.paddingLeft);
+            const paddingRight = parseInt(computedStyle.paddingRight);
+            
+            // Temporarily remove width constraint to measure content
+            noBtn.style.width = 'auto';
+            const contentWidth = noBtn.offsetWidth;
+            
+            // Set new width including padding
+            noBtn.style.width = contentWidth + 'px';
+        }
+
+        function redirectToSuccess() {
+            // Change background color immediately
+            if (!backgroundChanged) {
+                document.body.style.backgroundColor = '#ffebee';
+                backgroundChanged = true;
+            }
+            window.location.href = 'success.html';
         }
     </script>
 </body>
