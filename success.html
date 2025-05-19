@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yayy!</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffebee;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #e91e63;
+            margin-bottom: 20px;
+            font-size: 48px;
+            animation: bounce 1s infinite;
+        }
+
+        .gif-container {
+            margin: 20px 0;
+        }
+
+        .gif-container img {
+            max-width: 300px;
+            width: 100%;
+            border-radius: 10px;
+            /*box-shadow: 0 0 10px rgba(0,0,0,0.2);*/
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 36px;
+            }
+            
+            .gif-container img {
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Yayy! 🎉💖</h1>
+        <div class="gif-container">
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3hoM3JybzY4eHptaWhsYmRyczMxajdraTdyeTNmbW90b3o1dXV1aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/fvN5KrNcKKUyX7hNIA/giphy.gif" alt="Celebration GIF">
+        </div>
+    </div>
+</body>
+</html>
